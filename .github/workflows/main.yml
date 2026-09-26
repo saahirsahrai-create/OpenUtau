@@ -20,7 +20,13 @@ jobs:
             8.0.x
 
       - name: Restore
-        run: dotnet restore OpenUtau
+        run: dotnet restore OpenUtau -r win-x64
 
-      - name: Build
-        run: dotnet build OpenUtau -c Release --no-restore
+      - name: Publish
+        run: dotnet publish OpenUtau -c Release -r win-x64 --self-contained true -o bin/win-x64/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenUtau-sf2-win-x64
+          path: bin/win-x64/
