@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -32,6 +32,7 @@ namespace OpenUtau.Core {
             var oldSingers = Singers.Values.ToList();
             var singers = ClassicSingerLoader.FindAllSingers()
                 .Concat(Vogen.VogenSingerLoader.FindAllSingers())
+                .Concat(Sf2.Sf2SingerLoader.FindAllSingers())
                 .Distinct();
             Singers = singers
                 .ToLookup(s => s.Id)
