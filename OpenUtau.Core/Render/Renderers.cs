@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +15,14 @@ namespace OpenUtau.Core.Render {
         public const string VOGEN = "VOGEN";
         public const string DIFFSINGER = "DIFFSINGER";
         public const string VOICEVOX = "VOICEVOX";
+        public const string SF2 = "SF2";
 
         static readonly string[] classicRenderers = new[] { WORLDLINE_R, CLASSIC };
         static readonly string[] enunuRenderers = new[] { ENUNU };
         static readonly string[] vogenRenderers = new[] { VOGEN };
         static readonly string[] diffSingerRenderers = new[] { DIFFSINGER };
         static readonly string[] voicevoxRenderers = new[] { VOICEVOX };
+        static readonly string[] sf2Renderers = new[] { SF2 };
         static readonly string[] noRenderers = new string[0];
 
         public static string[] GetSupportedRenderers(USingerType singerType) {
@@ -35,6 +37,8 @@ namespace OpenUtau.Core.Render {
                     return diffSingerRenderers;
                 case USingerType.Voicevox:
                     return voicevoxRenderers;
+                case USingerType.Sf2:
+                    return sf2Renderers;
                 default:
                     return noRenderers;
             }
@@ -70,6 +74,8 @@ namespace OpenUtau.Core.Render {
                 return new DiffSinger.DiffSingerRenderer();
             } else if (renderer == VOICEVOX) {
                 return new Voicevox.VoicevoxRenderer();
+            } else if (renderer == SF2) {
+                return new Sf2.Sf2Renderer();
             }
             return null;
         }
